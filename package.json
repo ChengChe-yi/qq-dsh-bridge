@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "description": "Bridge between SnowLuma (OneBot v11 / QQ) and DeepSeek Harness: QQ messages become DSH agent prompts, agent replies go back to QQ. Zero runtime dependencies.",
   "engines": {
     "node": ">=22.13.0"
