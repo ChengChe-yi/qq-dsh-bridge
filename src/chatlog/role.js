@@ -18,9 +18,6 @@ export function extractOwnerTitle(content) {
   return { title, text: stripped };
 }
 
-const MARK_LEGACY = /[〔\[（(]\s*(?:一|1)\s*代?\s*[〕\]）)]|[〔\[（(]\s*v1\s*[〕\]）)]|[〔\[（(]\s*reserved\s*[〕\]）)]/i;
-const MARK_CURRENT = /[〔\[（(]\s*(?:二|2)\s*代\s*[〕\]）)]|[〔\[（(]\s*v2\s*[〕\]）)]|[〔\[（(]\s*reserved2\s*[〕\]）)]/i;
-
 export class RoleError extends Error {
   constructor(message, { hint = '' } = {}) {
     super(message);
@@ -80,46 +77,22 @@ export function writeRoleContent({ dir, name, content } = {}) {
 }
 
 export function selectRoleText({ content, maxChars = DEFAULT_MAX_INJECT_CHARS } = {}) {
-
   const { title: ownerTitle, text: body } = extractOwnerTitle(content);
 
   const text = body;
-  if (!text.trim()) return { text: '', chars: 0, truncated: false, skippedLegacy: 0, ownerTitle };
+  if (!text.trim()) return { text: '', chars: 0, truncated: false, ownerTitle };
 
-  const lines = text.split(/\r?\n/);
-  const kept = [];
-  let skippedLegacy = 0;
-  let skipSection = false;
-
-  for (const line of lines) {
-
-    if (/^#{1,6}\s/.test(line)) {
-      if (MARK_LEGACY.test(line)) {
-        skipSection = true;
-        skippedLegacy += 1;
-        continue;
-      }
-      skipSection = false;
-
-      kept.push(line.replace(new RegExp(`\\s*${MARK_CURRENT.source}`, 'gi'), '').trimEnd());
-      continue;
-    }
-    if (skipSection) continue;
-    kept.push(line);
-  }
-
-  let out = kept.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+  let out = text.replace(/\r?\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
   let truncated = false;
 
   if (maxChars > 0 && out.length > maxChars) {
-
     const cut = out.slice(0, maxChars);
     const at = cut.lastIndexOf('\n\n');
     out = (at > maxChars * 0.5 ? cut.slice(0, at) : cut).trimEnd() + '\n\n（人格卡因长度上限截断）';
     truncated = true;
   }
 
-  return { text: out, chars: out.length, truncated, skippedLegacy, ownerTitle };
+  return { text: out, chars: out.length, truncated, ownerTitle };
 }
 
 export class RoleStore {
