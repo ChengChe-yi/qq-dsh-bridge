@@ -1,0 +1,34 @@
+{
+  "dsh": {
+    "baseUrl": "http://127.0.0.1:3080",
+    "home": "",
+    "agentPreset": "qq"
+  },
+  "snowluma": {
+    "homeDir": "",
+    "selfQq": "",
+    "httpUrl": "http://127.0.0.1:3000",
+    "wsUrl": "ws://127.0.0.1:3001",
+    "accessToken": "",
+    "wsToken": ""
+  },
+  "owner": {
+    "qq": ""
+  },
+  "allow": {
+    "private": [],
+    "groups": []
+  },
+  "chatlog": {
+    "root": "workspaces",
+    "triggerWho": "owner",
+    "windowWho": "owner"
+  },
+  "log": {
+    "level": "info",
+    "file": "logs/bridge.log"
+  },
+  "decide": {
+    "mode": "off"
+  }
+}

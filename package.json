@@ -1,0 +1,17 @@
+{
+  "name": "qq-dsh-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Bridge between SnowLuma (OneBot v11 / QQ) and DeepSeek Harness: QQ messages become DSH agent prompts, agent replies go back to QQ. Zero runtime dependencies.",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node -e \"console.error('qq-dsh-bridge: no test suite. The old scripts/verify-structure.mjs was deleted as outdated - it matched source text and had drifted from the code. See README.');process.exit(1)\"",
+    "check": "node src/main.js --check"
+  }
+}

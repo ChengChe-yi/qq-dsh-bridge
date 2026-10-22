@@ -1,0 +1,41 @@
+
+!state/
+state/*
+# 真实状态文件不进仓库：里面是自己的 QQ 号、会话 id、表情库。
+# 只留模板与说明，见 state/README.md
+!state/README.md
+!state/*.example.json
+state/bridge.lock
+state/console-token
+state/current-role.json
+state/sessions.json
+state/*.bak
+state/*.bak-*
+state/*.tmp-*
+logs/
+*.log
+.smoke-pid
+.test-pid
+*.pid
+.sim*.mjs
+.probe*.mjs
+.verify*.mjs
+*.tmp
+*.tmp-*
+*~
+node_modules/
+.pnpm-store/
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+config.local.json
+# 本机的真实配置和启动脚本不进仓库 —— 模板是 config.example.json / Launch.example.bat
+/config.json
+/Launch.bat
+*.key
+*.pem
+.credentials.yaml
+console-token

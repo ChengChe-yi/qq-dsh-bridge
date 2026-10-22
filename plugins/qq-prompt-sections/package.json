@@ -1,0 +1,13 @@
+{
+  "name": "qq-prompt-sections",
+  "version": "1.0.0",
+  "private": true,
+  "description": "把 QQ 桥接的静态规则段注册为 system prompt section（不再每轮拼进 user 消息）",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "license": "MIT"
+}
